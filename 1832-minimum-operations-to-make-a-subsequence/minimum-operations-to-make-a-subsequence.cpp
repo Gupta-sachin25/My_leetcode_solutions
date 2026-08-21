@@ -14,13 +14,11 @@ public:
         vector<int> dp;
         if(ar.empty()) return target.size();
 
-         for(int x : ar) {
-            auto it = lower_bound(dp.begin(), dp.end(), x);
-
-            if(it == dp.end())
-                dp.push_back(x);
-            else
-                *it = x;
+        dp.push_back(ar[0]);
+        for(int i=1;i<ar.size();i++){
+            auto it=lower_bound(dp.begin() , dp.end()  , ar[i]);
+            if(it==dp.end()) dp.push_back(ar[i]);
+           else *it=ar[i];
         }
         return target.size()-dp.size();
     }
